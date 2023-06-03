@@ -1,0 +1,78 @@
+/*--dashboard--*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #27374D;
+ 
+} 
+ 
+.navbar {
+  background-color: black;
+  color: lightblue;
+  height: 7vh;
+  text-shadow: lavender;
+}
+
+.navbar ul {
+    text-align: left;
+    list-style-type: none;
+    position: fixed;
+}
+
+.sidebar {
+  background-color: skyblue;
+  color: lightblue;
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*---------------------*/
+
+.tambah{
+  background-color: lightblue;
+  color: white;
+  margin: auto;
+  width: 50%;
+  border-radius: 10px;
+  font-family: monospace;
+}
+
+.kotak{
+  padding: 5px;
+  margin: 15%;
+}
+
+h1{
+  text-align: center;
+  color: antiquewhite;
+}
+
+form{
+  padding-left: 20px;
+  margin: auto;
+  padding-bottom: 5px;
+}
+
+form ul{
+ list-style-type: none;
+}
+
+button{
+  background-color: lightblue;
+  border-radius: 3px;
+  align-items: center;
+}
