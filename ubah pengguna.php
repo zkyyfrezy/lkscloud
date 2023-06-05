@@ -1,46 +1,44 @@
 <?php 
 
-    // Koneksi ke database
-    $conn = mysqli_connect("localhost", "root", "", "smklkscloud");
+require 'functions.php';
 
-    // Memeriksa apakah parameter id_pengguna telah dikirim melalui URL
-    if (isset($_GET['id_user'])) {
-        $id = $_GET['id_user'];
+// Koneksi ke database
+$conn = mysqli_connect("localhost", "root", "", "smklkscloud");
 
-        // Mendapatkan data pengguna berdasarkan id_pengguna
-        $query = "SELECT * FROM user WHERE id_user = '$id'";
-        $result = mysqli_query($koneksi, $query);
-        $data = mysqli_fetch_assoc($result);
-    }
+   // query data siswa berdasarkan id
+$user = query("SELECT * FROM user WHERE id_user = $id")[0];
+$resault = mysqli_query($con("SELECT * FROM user"));
 
-    // Memeriksa apakah form telah disubmit
-    if (isset($_POST['submit'])) {
-        $id = $_POST['id_user'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $namalengkap = $_POST['nama_lengkap'];
-        $email = $_POST['email'];
-        $level = $_POST['level'];
-        $blokir = $_POST['blokir'];
 
-        // Memperbarui data pengguna dalam database
-        $query = "UPDATE user SET 
-        			$username ='$username', 
-        			$password = '$password',
-        			$namalengkap = '$namalengkap',
-        			$email = '$email',
-        			$level = '$level',
-        			$blokir = '$blokir'
-        		WHERE id_user = '$id_'";
-        $result = mysqli_query($koneksi, $query);
+while ($user = mysqli_fetch_assoc($resault) ) {
+	var_dump($user);
+}
 
-        if ($result) {
-            echo "Data pengguna berhasil diperbarui.";
-        } else {
-            echo "Gagal memperbarui data pengguna: " . mysqli_error($koneksi);
-        }
-    }
 
+
+// cek apakah tombol submit sudah ditekan atau belum
+if ( isset($_POST["submit"]) ) {
+	
+// cek apakah data berhasil diubah atau tidak
+	if ( ubah($_POST) > 0 ){
+		echo "
+		<script>
+			alert('data berhasil diubah');
+			document.location.href = 'index.php';
+		</script>
+		";
+	} else {
+		echo "
+		<script>
+			alert('data gagal diubah');
+			document.location.href = 'index.php';
+		</script>
+		";
+	}
+
+
+}
+ ?>
 
  ?>
 
@@ -57,43 +55,43 @@
 
 	<h2>Form Ubah Pengguna</h2>
 	    <form action="" method="post">
-	        <input type="hidden" name="id_user" value="<?php echo $data['id_user']; ?>">
+	        <input type="hidden" name="id_user" value="<?php echo $user['id_user']; ?>">
 	        <ul>
 	        	<li>
 	        		<label for="nama">Username :</label>
-	        		<input type="text" name="username" value="<?php echo $data['username']; ?>">
+	        		<input type="text" name="username" value="<?php echo $user['username']; ?>">
 	        	</li>
 	        </ul>
 	        <ul>
 	        	<li>
 	        		<label for="password">Password :</label>
-	        		<input type="password" name="password" value="<?php echo $data['password']; ?>">
+	        		<input type="password" name="password" value="<?php echo $user['password']; ?>">
 	        	</li>
 	        </ul>
 	        <ul>
 	        	<li>
 	        		<label for="nama lengkap">Nama Lengkap :</label>
-	        		<input type="text" name="nama lengkap" value="<?php echo $data['nama_lengkap']; ?>">
+	        		<input type="text" name="nama lengkap" value="<?php echo $user['nama_lengkap']; ?>">
 	        	</li>
 	        </ul>
 	        <ul>
 	        	<li>
 	        		<label for="email">Email :</label>
-	        		<input type="text" name="email" value="<?php echo $data['email']; ?>">
+	        		<input type="text" name="email" value="<?php echo $user['email']; ?>">
 	        	</li>
 	        </ul>
 	        <ul>
 	        	<li>
 	        		<label>Level :</label>
-	        		<input type="radio" name="level" value="<?php echo $data['level']; ?>">Admin
-	        		<input type="radio" name="level" value="<?php echo $data['level']; ?>">User
+	        		<input type="radio" name="level" value="<?php echo $user['level']; ?>">Admin
+	        		<input type="radio" name="level" value="<?php echo $user['level']; ?>">User
 	        	</li>
 	        </ul>
 	        <ul>
 	        	<li>
 	        		<label>Blokir :</label>
-	        		<input type="radio" name="blokir" value="<?php echo $data['blokir']; ?>">Ya
-	        		<input type="radio" name="blokir" value="<?php echo $data['blokir']; ?>">Tidak
+	        		<input type="radio" name="blokir" value="<?php echo $user['blokir']; ?>">Ya
+	        		<input type="radio" name="blokir" value="<?php echo $user['blokir']; ?>">Tidak
 	        	</li>
 	        </ul>
 	        

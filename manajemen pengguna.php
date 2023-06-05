@@ -1,5 +1,7 @@
 <?php 
  
+require 'functions.php';
+
 $conn = mysqli_connect("localhost", "root", "", "smklkscloud");
 
 $resault = mysqli_query($conn, "SELECT * FROM user");
